@@ -1,0 +1,24 @@
+use('app-short-term-parking-control')
+
+db.short_term_parking.drop()
+
+db.short_term_parking.insertMany([
+  {
+    '_id': '260580f9-4764-499b-8b6e-f7198e7981ee',
+    'valid_from': '2022-07-13T08:30:00.000Z',
+    'valid_until': '2022-07-13T09:30:00.000Z',
+    'vehicle_id': 'a4aa2ae0-37d4-4377-8c18-7beb0aab0bda',
+  },
+  {
+    '_id': '24b88405-3f99-42dd-b64c-a4e6499e6f0e',
+    'valid_from': '2022-07-13T10:30:00.000Z',
+    'valid_until': '2022-07-13T11:00:00.000Z',
+    'vehicle_id': '86c86d35-c793-4d10-ac23-d1542dcd2c67',
+  },
+  {
+    '_id': '54312fb0-e2d0-43be-8428-f39b266d3cdf',
+    'valid_from': '2022-07-13T12:30:00.000Z',
+    'valid_until': '2022-07-13T14:30:00.000Z',
+    'vehicle_id': '3d0e5ac6-7b6e-4867-87c3-e067a1c778d1',
+  },
+])

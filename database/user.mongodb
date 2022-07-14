@@ -1,0 +1,20 @@
+use('app-short-term-parking-control')
+
+db.user.drop()
+
+db.user.insertMany([
+  {
+    '_id': '1f025c77-40c5-4d0e-b3a8-41254ccbc789',
+    'fullname': 'Administrator',
+    'email': 'adm@adm.com',
+    'password': 'admin123',
+    'administrador': true
+  },
+  {
+    '_id': '394ab112-4425-4534-8658-49a45e0d2aab',
+    'fullname': 'User',
+    'email': 'user@user.com',
+    'password': 'user456',
+    'administrador': true
+  },
+])
