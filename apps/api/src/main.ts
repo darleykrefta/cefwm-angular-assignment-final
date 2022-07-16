@@ -1,6 +1,8 @@
 import * as express from 'express';
 
 import authRoute from './app/routes/auth';
+import vehicleRoute from './app/routes/vehicle';
+import shortTermParkingRoute from './app/routes/short-term-parking';
 
 import configs from './app/configs';
 import { connectToDatabase } from './app/services/db';
@@ -21,6 +23,8 @@ connectToDatabase()
     });
 
     app.use('/api/auth', authRoute);
+    app.use('/api/vehicles', vehicleRoute);
+    app.use('/api/parkings', shortTermParkingRoute);
 
     app.listen(configs.api.port, () => {
       console.log(`Listening at http://localhost:${configs.api.port}/api`);
