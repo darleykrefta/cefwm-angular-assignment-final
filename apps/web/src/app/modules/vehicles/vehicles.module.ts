@@ -7,14 +7,17 @@ import { VehiclesRoutingModule } from './vehicles-routing.module';
 import { ListComponent } from './components/list/list.component';
 import { FormComponent } from './components/form/form.component';
 
+import { PipePlate } from './pipe/plate.pipe';
+
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { SidebarModule } from 'primeng/sidebar';
 import { CalendarModule } from 'primeng/calendar';
+import { InputMaskModule } from 'primeng/inputmask';
 
 @NgModule({
-  declarations: [ListComponent, FormComponent],
+  declarations: [ListComponent, FormComponent, PipePlate],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -25,6 +28,7 @@ import { CalendarModule } from 'primeng/calendar';
     CardModule,
     SidebarModule,
     CalendarModule,
+    InputMaskModule,
   ],
 })
 export class VehiclesModule {}

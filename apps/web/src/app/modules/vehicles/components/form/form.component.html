@@ -11,35 +11,23 @@
 
   <p-card styleClass="surface-200 mb-4">
     <div>
-      <div class="field">
+      <div class="field flex flex-column">
         <label for="brand">Brand</label>
-        <input
-          pInputText
-          [formControl]="brand"
-          id="brand"
-          type="text"
-          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-        />
+        <input pInputText [formControl]="brand" id="brand" type="text" />
       </div>
-      <div class="field">
+      <div class="field flex flex-column">
         <label for="model">Model</label>
-        <input
-          pInputText
-          [formControl]="model"
-          id="model"
-          type="text"
-          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-        />
+        <input pInputText [formControl]="model" id="model" type="text" />
       </div>
-      <div class="field">
+      <div class="field flex flex-column">
         <label for="plate">Plate</label>
-        <input
-          pInputText
+        <p-inputMask
+          mask="aaa-9999"
           [formControl]="plate"
+          placeholder="AAA-9999"
           id="plate"
           type="text"
-          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-        />
+        ></p-inputMask>
       </div>
       <div class="flex w-full justify-content-end">
         <a
