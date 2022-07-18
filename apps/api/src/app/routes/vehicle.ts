@@ -2,29 +2,17 @@ import { NextFunction, Request, Response, Router } from 'express';
 
 import { Vehicle } from '@cefwm-angular/common';
 import { collections } from '../services/db';
+import { uuid } from 'uuidv4';
 
 const router = Router();
 
 router.get('/', async (req: Request, res: Response, next: NextFunction) => {
   const user_id = req.query.user_id;
-  const artigos: Array<Vehicle> = await collections.vehicles
+  const vehicles: Array<Vehicle> = await collections.vehicles
     .aggregate<Vehicle>([
       {
         $match: {
           user_id,
-        },
-      },
-      {
-        $unwind: {
-          path: '$parkers',
-        },
-      },
-      {
-        $lookup: {
-          from: 'short_term_parking',
-          localField: 'parkers._id',
-          foreignField: '_id',
-          as: 'parkers',
         },
       },
       {
@@ -41,22 +29,11 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
           brand: 1,
           model: 1,
           plate: 1,
-          parkers: {
-            $map: {
-              input: '$parkers',
-              as: 'parker',
-              in: {
-                _id: '$$parker._id',
-                valid_from: '$$parker.valid_from',
-                valid_until: '$$parker.valid_until',
-              },
-            },
-          },
         },
       },
     ])
     .toArray();
-  res.json(artigos);
+  res.json(vehicles);
   next();
 });
 
@@ -75,35 +52,11 @@ router.get('/:_id', async (req: Request, res: Response, next: NextFunction) => {
         $limit: 1,
       },
       {
-        $unwind: {
-          path: '$parkers',
-        },
-      },
-      {
-        $lookup: {
-          from: 'short_term_parking',
-          localField: 'parkers._id',
-          foreignField: '_id',
-          as: 'parkers',
-        },
-      },
-      {
         $project: {
           _id: 1,
           brand: 1,
           model: 1,
           plate: 1,
-          parkers: {
-            $map: {
-              input: '$parkers',
-              as: 'parker',
-              in: {
-                _id: '$$parker._id',
-                valid_from: '$$parker.valid_from',
-                valid_until: '$$parker.valid_until',
-              },
-            },
-          },
         },
       },
     ])
@@ -129,7 +82,7 @@ router.put('/:_id', async (req: Request, res: Response) => {
 
 router.post('/', async (req: Request, res: Response) => {
   const body: Vehicle = req.body;
-  const result = await collections.vehicles.insertOne(body);
+  const result = await collections.vehicles.insertOne({ _id: uuid(), ...body });
   res.json(result);
 });
 
