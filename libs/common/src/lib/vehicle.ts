@@ -4,5 +4,4 @@ export interface Vehicle {
   model: string;
   plate: string;
   user_id: string;
-  parkers: Array<string>;
 }

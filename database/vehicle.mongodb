@@ -9,11 +9,6 @@ db.vehicle.insertMany([
     'model': 'Versa',
     'plate': 'DQE-2H66',
     'user_id': '1f025c77-40c5-4d0e-b3a8-41254ccbc789',
-    'parkers': [
-      {
-        _id: '260580f9-4764-499b-8b6e-f7198e7981ee'
-      }
-    ]
   },
   {
     '_id': '86c86d35-c793-4d10-ac23-d1542dcd2c67',
@@ -21,11 +16,6 @@ db.vehicle.insertMany([
     'model': 'Eclipse',
     'plate': 'HTY-2G91',
     'user_id': '1f025c77-40c5-4d0e-b3a8-41254ccbc789',
-    'parkers': [
-      {
-        _id: '24b88405-3f99-42dd-b64c-a4e6499e6f0e'
-      }
-    ]
   },
   {
     '_id': 'dfaa26f4-9ae3-4c7f-b05a-b8fa01b78332',
@@ -33,7 +23,6 @@ db.vehicle.insertMany([
     'model': 'Grand Cherokee',
     'plate': 'MZV-8T28',
     'user_id': '1f025c77-40c5-4d0e-b3a8-41254ccbc789',
-    'parkers': []
   },
   {
     '_id': '3d0e5ac6-7b6e-4867-87c3-e067a1c778d1',
@@ -41,10 +30,5 @@ db.vehicle.insertMany([
     'model': 'Ranger',
     'plate': 'AXL-9362',
     'user_id': '394ab112-4425-4534-8658-49a45e0d2aab',
-     'parkers': [
-        {
-          _id: '54312fb0-e2d0-43be-8428-f39b266d3cdf'
-        }
-     ]
   },
 ])
