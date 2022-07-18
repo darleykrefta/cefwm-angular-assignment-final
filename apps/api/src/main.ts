@@ -6,6 +6,7 @@ import shortTermParkingRoute from './app/routes/short-term-parking';
 
 import configs from './app/configs';
 import { connectToDatabase } from './app/services/db';
+import { requireJwtToken } from './app/middleware/jwt';
 
 import * as cors from 'cors';
 
@@ -23,8 +24,8 @@ connectToDatabase()
     });
 
     app.use('/api/auth', authRoute);
-    app.use('/api/vehicles', vehicleRoute);
-    app.use('/api/parkings', shortTermParkingRoute);
+    app.use('/api/vehicles', requireJwtToken, vehicleRoute);
+    app.use('/api/parkings', requireJwtToken, shortTermParkingRoute);
 
     app.listen(configs.api.port, () => {
       console.log(`Listening at http://localhost:${configs.api.port}/api`);
