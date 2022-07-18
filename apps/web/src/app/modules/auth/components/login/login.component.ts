@@ -53,6 +53,5 @@ export class LoginComponent {
         localStorage.setItem('TOKEN-PARKER-APP', result.token);
         localStorage.setItem('USER-ID-PARKER-APP', result._id);
       });
-    console.log(this.formGroup.value);
   }
 }
