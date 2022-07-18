@@ -1,0 +1,64 @@
+<div class="px-4">
+  <div class="flex flex-1 w-full">
+    <div *ngIf="isEdit; else isNotEdit">
+      <h1>Update a vehicle</h1>
+    </div>
+
+    <ng-template #isNotEdit>
+      <h1>Create a vehicle</h1>
+    </ng-template>
+  </div>
+
+  <p-card styleClass="surface-200 mb-4">
+    <div>
+      <div class="field">
+        <label for="brand">Brand</label>
+        <input
+          pInputText
+          [formControl]="brand"
+          id="brand"
+          type="text"
+          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+        />
+      </div>
+      <div class="field">
+        <label for="model">Model</label>
+        <input
+          pInputText
+          [formControl]="model"
+          id="model"
+          type="text"
+          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+        />
+      </div>
+      <div class="field">
+        <label for="plate">Plate</label>
+        <input
+          pInputText
+          [formControl]="plate"
+          id="plate"
+          type="text"
+          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+        />
+      </div>
+      <div class="flex w-full justify-content-end">
+        <a
+          href="vehicles"
+          pButton
+          icon="pi pi-close"
+          label="Cancel"
+          class="p-button-text mr-2"
+        ></a>
+
+        <button
+          pButton
+          icon="pi pi-save"
+          label="Save"
+          type="button"
+          [disabled]="formGroup.invalid"
+          (click)="submitForm(formGroup.value)"
+        ></button>
+      </div>
+    </div>
+  </p-card>
+</div>

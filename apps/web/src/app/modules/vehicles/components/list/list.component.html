@@ -1,0 +1,100 @@
+<div class="px-4">
+  <div class="flex flex-1 justify-content-between w-full">
+    <h1>Vehicles</h1>
+
+    <a
+      href="/vehicles/new"
+      pButton
+      label="Create vehicle"
+      class="p-button-primary"
+      icon="pi pi-car"
+    ></a>
+  </div>
+
+  <p-card
+    *ngFor="let vehicle of vehicles$ | async"
+    [header]="vehicle.plate"
+    [subheader]="vehicle.model + ' (' + vehicle.brand + ')'"
+    styleClass="surface-200 mb-4"
+  >
+    <ng-template pTemplate="footer">
+      <p-button
+        label="Park"
+        class="p-button-secondary"
+        icon="pi pi-directions"
+        (click)="handleSelectedVehicle(vehicle)"
+      ></p-button>
+
+      <a
+        [href]="'/vehicles/' + vehicle._id"
+        pButton
+        label="Edit"
+        class="p-button-secondary"
+        icon="pi pi-pencil"
+      ></a>
+    </ng-template>
+  </p-card>
+
+  <p-sidebar [(visible)]="display" styleClass="p-sidebar-md " position="right">
+    <div class="flex flex-1 flex-column h-30rem">
+      <h1>Park your vehicle: {{ selectedVehicle.plate }}</h1>
+      <h3>{{ selectedVehicle.model + ' (' + selectedVehicle.brand + ')' }}</h3>
+
+      <div *ngIf="selectedVehicleParkings.length">
+        <h3>Parkers:</h3>
+        <div *ngFor="let park of selectedVehicleParkings">
+          <span>{{ park.valid_from | date: 'dd/MM/yyyy HH:mm:ss' }}</span> until
+          <span>{{ park.valid_until | date: 'dd/MM/yyyy HH:mm:ss' }}</span>
+        </div>
+      </div>
+
+      <div class="p-fluid grid formgrid">
+        <h3>New parking</h3>
+        <div class="field col-12">
+          <label for="date">Date:</label>
+          <p-calendar inputId="date" [(ngModel)]="now" disabled></p-calendar>
+        </div>
+
+        <div class="field col-6">
+          <label for="validFrom">Valid from:</label>
+          <p-calendar
+            inputId="validFrom"
+            [(ngModel)]="validFrom"
+            [showTime]="showTime"
+            [timeOnly]="true"
+            [hourFormat]="format"
+          ></p-calendar>
+        </div>
+
+        <div class="field col-6">
+          <label for="validUntil">Valid until:</label>
+          <p-calendar
+            inputId="validUntil"
+            [(ngModel)]="validUntil"
+            [showTime]="showTime"
+            [timeOnly]="true"
+            [hourFormat]="format"
+          ></p-calendar>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex w-full justify-content-end">
+      <button
+        pButton
+        icon="pi pi-close"
+        label="Cancel"
+        class="p-button-text mr-2"
+        (click)="display = false"
+      ></button>
+
+      <button
+        pButton
+        icon="pi pi-save"
+        label="Save"
+        type="button"
+        (click)="createNewParking(selectedVehicle._id)"
+      ></button>
+    </div>
+  </p-sidebar>
+</div>
